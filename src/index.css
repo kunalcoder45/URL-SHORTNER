@@ -1,0 +1,290 @@
+@import "tailwindcss";
+
+:root {
+  --primary-color: #6c63ff;
+  --secondary-color: #4a00e0;
+  --background-color: #0f172a;
+  --card-color: #1e293b;
+  --text-color: #f8fafc;
+  --error-color: #ef4444;
+  --success-color: #10b981;
+  --border-radius: 12px;
+  --transition-speed: 0.3s;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.url-shortener {
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.shortener-container {
+  background-color: var(--card-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  padding: 2.5rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.shortener-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.1) 0%, rgba(0, 0, 0, 0) 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.shortener-header {
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.shortener-title h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.shortener-title p {
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+}
+
+.shortener-form {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  display: flex;
+  position: relative;
+  border-radius: var(--border-radius);
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-speed) ease;
+  overflow: hidden;
+}
+
+.input-group:focus-within {
+  box-shadow: 0 0 0 2px var(--primary-color);
+}
+
+.input-error {
+  border-color: var(--error-color);
+}
+
+.url-input {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  outline: none;
+}
+
+.url-input::placeholder {
+  color: rgba(248, 250, 252, 0.5);
+}
+
+.shorten-button {
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border: none;
+  padding: 0 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shorten-button:hover {
+  background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+}
+
+.shorten-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: var(--error-color);
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.result-container {
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: fadeIn 0.5s ease;
+}
+
+.result-container h2 {
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.result-group {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.result-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+  color: var(--text-color);
+  outline: none;
+}
+
+.copy-button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+  min-width: 100px;
+}
+
+.copy-button:hover {
+  background: var(--secondary-color);
+}
+
+.clear-button {
+  width: 100%;
+  background: transparent;
+  color: var(--text-color);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius);
+  padding: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+}
+
+.clear-button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.loader {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  padding: 1rem;
+}
+
+@media (max-width: 768px) {
+  .url-shortener {
+    padding: 1rem;
+  }
+
+  .shortener-container {
+    padding: 1.5rem;
+  }
+
+  .shortener-title h1 {
+    font-size: 2rem;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+
+  .url-input {
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+  }
+
+  .shorten-button {
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    padding: 0.75rem;
+  }
+
+  .result-group {
+    flex-direction: column;
+  }
+
+  .result-input {
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+  }
+
+  .copy-button {
+    border-radius: 0 0 var(--border-radius) var(--border-radius);
+    padding: 0.75rem;
+  }
+}
