@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/google12345abcd.html", "destination": "/google12345abcd.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
