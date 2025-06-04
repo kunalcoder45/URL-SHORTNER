@@ -6,7 +6,12 @@ const App = () => {
     <div className="app">
       <UrlShortener />
       <footer className="footer">
-        <p>© {new Date().getFullYear()} URL Shortener | Made with ❤️ Kunal Sharma</p>
+        <p>© {new Date().getFullYear()} URL Shortener | Made with ❤️ 
+          <a 
+            href="https://kunalportfolio45.netlify.app/"
+            target='__blank'>Kunal Sharma
+          </a>
+        </p>
       </footer>
     </div>
   )
